@@ -38,6 +38,8 @@ pipeline {
             steps {
                 // Pakowanie skompilowanych klas do pliku JAR
                 bat 'if not exist build\\jar mkdir build\\jar'
+                // Zmienia katalog roboczy na build\classes, a następnie wykonuje polecenie jar
+                // Używa bezwzględnej ścieżki do pliku manifestu
                 bat 'cd build\\classes && "%JAVA_HOME%\\bin\\jar" cvmf ..\\..\\manifest\\MANIFEST.MF ..\\jar\\MyApplication.jar *'
             }
         }
