@@ -32,6 +32,12 @@ pipeline {
                 bat 'cd build\\classes && "%JAVA_HOME%\\bin\\jar" cvf ..\\jar\\MyApplication.jar *'
             }
         }
+
+        stage('Run') {
+            steps {
+                bat '"%JAVA_HOME%\\bin\\java" -jar build\\jar\\MyApplication.jar'
+            }
+        }
         
     }
 }
