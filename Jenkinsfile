@@ -25,11 +25,20 @@ pipeline {
             }
         }
 
+        stage('Prepare Manifest') {
+            steps {
+                // Tworzy katalog dla pliku manifestu, jeśli nie istnieje
+                bat 'if not exist build\\manifest mkdir build\\manifest'
+                // Tworzy plik manifestu z wpisem Main-Class
+                bat 'echo Main-Class: com.example.Main > build\\manifest\\MANIFEST.MF'
+            }
+        }
+
         stage('Package') {
             steps {
                 // Pakowanie skompilowanych klas do pliku JAR
                 bat 'if not exist build\\jar mkdir build\\jar'
-                bat 'cd build\\classes && "%JAVA_HOME%\\bin\\jar" cvf ..\\jar\\MyApplication.jar *'
+                bat 'cd build\\classes && "%JAVA_HOME%\\bin\\jar" cvmf ..\\..\\manifest\\MANIFEST.MF ..\\jar\\MyApplication.jar *'
             }
         }
 
