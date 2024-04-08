@@ -28,7 +28,7 @@ pipeline {
         stage('Prepare Manifest') {
             steps {
                 // Umieszcza plik manifestu bezpośrednio w katalogu build\classes
-                bat 'echo Main-Class: com.example.Main > build\\classes\\MANIFEST.MF'
+                bat 'echo Main-Class: Main > build\\classes\\MANIFEST.MF'
             }
         }
 
